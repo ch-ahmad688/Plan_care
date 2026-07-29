@@ -11,48 +11,76 @@ class Bottom_bar extends StatelessWidget {
     final Bottom_bar_controller controller = Get.put(Bottom_bar_controller());
 
     return Scaffold(
-      backgroundColor: Color(0xffFFFFFF),
-      body: GetBuilder<Bottom_bar_controller>(
-        builder: (controller) => PageView(
-          controller: controller.pageController,
-          onPageChanged: controller.onPageChanged,
-          children: controller.pages,
-        ),
+      backgroundColor: const Color(0xffFFFFFF),
+      body: PageView(
+        controller: controller.pageController,
+        onPageChanged: controller.onPageChanged,
+        children: controller.pages,
       ),
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          border: Border(
-            top: BorderSide(
-              color: Colors.grey.shade300,
-              width: 1.0,
-            ),
+      bottomNavigationBar: const _BottomNavBar(),
+    );
+  }
+}
+
+class _BottomNavBar extends StatelessWidget {
+  const _BottomNavBar();
+
+  @override
+  Widget build(BuildContext context) {
+    final controller = Get.find<Bottom_bar_controller>();
+
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border(
+          top: BorderSide(
+            color: Colors.black,
+            width: 0.25,
           ),
         ),
-        child: BottomNavigationBar(
-          currentIndex: controller.currentindex,
+      ),
+      child: Obx(
+            () => BottomNavigationBar(
+          currentIndex: controller.currentindex.value,
           onTap: controller.changePage,
+          type: BottomNavigationBarType.fixed,
+          elevation: 10,
+          selectedItemColor: Colors.black,
+          unselectedItemColor: Colors.grey,
+          selectedFontSize: 12,
+          unselectedFontSize: 12,
+          showSelectedLabels: true,
+          showUnselectedLabels: true,
           items: const [
             BottomNavigationBarItem(
-              icon: ImageIcon(AssetImage('assets/Icon/Vector.png')),
-              label: 'Home',
+              icon: ImageIcon(
+                AssetImage('assets/Icon/Vector.png'),
+                size: 24,
+              ),
+              label: '',
             ),
             BottomNavigationBarItem(
-              icon: ImageIcon(AssetImage('assets/Icon/Vector(1).png')),
-              label: 'Search',
+              icon: ImageIcon(
+                AssetImage('assets/Icon/Vector (1).png'),
+                size: 24,
+              ),
+              label: '',
             ),
             BottomNavigationBarItem(
-              icon: ImageIcon(AssetImage('assets/Icon/Vector(2).png')),
-              label: 'Favorites',
+              icon: ImageIcon(
+                AssetImage('assets/Icon/Vector (2).png'),
+                size: 24,
+              ),
+              label: '',
             ),
             BottomNavigationBarItem(
-              icon: ImageIcon(AssetImage('assets/Icon/Vector(3).png')),
-              label: 'Profile',
+              icon: ImageIcon(
+                AssetImage('assets/Icon/Vector (3).png'),
+                size: 24,
+              ),
+              label: '',
             ),
           ],
-          type: BottomNavigationBarType.fixed,
-          elevation: 0,
-          selectedItemColor: Colors.black,
-          unselectedItemColor: Colors.black,
         ),
       ),
     );

@@ -6,43 +6,41 @@ import '../Home/Home.dart';
 import '../Profile/Profile.dart';
 import '../Search/Search.dart';
 
-class Bottom_bar_controller extends GetxController{
-  int currentindex =0;
+class Bottom_bar_controller extends GetxController {
+  var currentindex = 0.obs;
   late PageController pageController;
   late List<Widget> pages;
+
   @override
-  void onInit(){
+  void onInit() {
     super.onInit();
 
-
-    pageController = PageController(initialPage: currentindex);
-    pages=[
-      Home(),
-      Search(),
-      Files(),
-      Profile(),
+    pageController = PageController(initialPage: currentindex.value);
+    pages = [
+      const Home(),
+      const Search(),
+      const Files(),
+      const Profile(),
     ];
-
   }
-  void changePage(int index){
-    if(currentindex==index) return;
-    currentindex==index;
+
+  void changePage(int index) {
+    if (currentindex.value == index) return;
+    currentindex.value = index;
     pageController.animateToPage(
       index,
-      duration:Duration(milliseconds: 100),
-      curve: Curves.bounceInOut,
+      duration: const Duration(milliseconds: 400),
+      curve: Curves.easeInOut,
     );
-    update();
   }
 
-  void onPageChanged(int index){
-    currentindex==index;
-    update();
+  void onPageChanged(int index) {
+    currentindex.value = index;
   }
 
-  void onClosed(){
+  @override
+  void onClose() {
     pageController.dispose();
     super.onClose();
   }
-
 }
