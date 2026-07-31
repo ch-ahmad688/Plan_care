@@ -29,7 +29,7 @@ class Bottom_bar_controller extends GetxController {
     currentindex.value = index;
     pageController.animateToPage(
       index,
-      duration: const Duration(milliseconds: 400),
+      duration: const Duration(milliseconds: 500),
       curve: Curves.easeInOut,
     );
   }

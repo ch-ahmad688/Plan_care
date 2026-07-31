@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'Model.dart';
+import 'Plants Explain.dart';
 
 class ModelCart extends StatelessWidget {
   final Model model;
@@ -8,7 +10,7 @@ class ModelCart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      
+      onTap:  ()=> Get.to(()=>Plants_explain(selectedPlants:model)),
       child: Container(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
